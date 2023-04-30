@@ -19,9 +19,18 @@ const Task = require('../models/tasks');
      }
 
 
-     function deleteTask(id){
+      function deleteTask(id,cb){
        
-         return Task.deleteOne({ _id: id  }).then((task)=>{console.log('Task deleted ')});
+         Task.deleteOne({ _id: id  }).then(( deletedTask)=>{
+
+          cb(deletedTask);
+          
+
+
+         }).catch((err)=>{cb(err)});  
+            
+    
+           
 
      } 
   

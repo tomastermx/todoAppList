@@ -39,11 +39,33 @@ const storeTask = require('../store/tasks');
 
   /* Delete Task */
 
-    function deleteTask (id){
-        
+         function deleteTask (id){
+         
+          return new Promise((resolve,reject)=>{
+     
+ 
+              
+                  storeTask.delete(id,function(err, dltObj){
+                    
+                        if(dltObj){
 
+                         console.log(dltObj);
+                         resolve(dltObj)
+                        } else if (err) {
 
-   }
+                          reject('couldnt find object');
+              
+                        }
+                    
+
+                    
+                  });
+                
+
+         })
+           
+     
+      }
 
 
  module.exports = {addNewTask, listTasks, deleteTask}

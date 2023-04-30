@@ -13,7 +13,7 @@ router.post('/new',(req,res)=>{
   .then((obj)=>{
     
     console.log(obj);
-    res.json(obj);   
+    res.status(201).json(obj);   
 
  })   
 
@@ -31,17 +31,22 @@ router.post('/new',(req,res)=>{
 
 router.get('/all',(eq,res)=>{
    
-controller.listTasks().then((tasks)=>{res.json(tasks)});
+controller.listTasks().then((tasks)=>{
+  res.status(200).json(tasks)});
 });
 
 
 /* delete a task */
-router.patch('/:id', (req,res)=>{
+router.delete('/delete/:id', (req,res)=>{
 
-  res.send(req.params.id);
+    //console.log(req.params.id);
+    let id = req.params.id;
 
+    controller.deleteTask(id).then((Obj)=>{
+      
+       res.json(Obj);
+    }).catch((e)=>{console.log(e)});
 
-  
 });
 
 
