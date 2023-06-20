@@ -1,10 +1,10 @@
 
 const mongoose = require('mongoose');
 
-var taskSchema = new mongoose.Schema({
+const  taskSchema = new mongoose.Schema({
    
     name: String,
-    level: String,
+    priority: String,
     done: {type:Boolean, default:false }
 
     

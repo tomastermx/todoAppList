@@ -1,14 +1,16 @@
 const express = require('express');
 const controller = require('../controllers/tasks');
 const router = express.Router();
+const validatorHandler = require('../middleware/validator');
+const { createTask } = require('../schemas/task.schema');
 
 
 /*post new task */
 
-router.post('/new',(req,res)=>{
+router.post('/new', validatorHandler(createTask,'body') , (req,res,next)=>{
      
 
- controller.addNewTask( req.body.name, req.body.level, req.body.done )
+ controller.addNewTask( req.body.name, req.body.priority, req.body.done )
  
   .then((obj)=>{
     
@@ -45,7 +47,7 @@ router.delete('/delete/:id', (req,res)=>{
     controller.deleteTask(id).then((Obj)=>{
       
        res.json(Obj);
-    }).catch((e)=>{console.log(e)});
+    }).catch((e)=>{console.log(e + "ruta")});
 
 });
 

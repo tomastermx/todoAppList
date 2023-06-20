@@ -11,14 +11,14 @@ const storeTask = require('../store/tasks');
 
   /* Add new Task */
 
-  function addNewTask( name, level ){
+  function addNewTask( name, priority ){
     return new Promise((resolve,reject)=>{
-      if(!name||!level ){
+      if(!name||!priority ){
         
         reject('data missing' );
 
         } else  {
-              taskObj = {name:name,level:level} 
+              taskObj = {name:name,priority:priority} 
            
               storeTask.add(taskObj,function(task){
 
@@ -45,7 +45,7 @@ const storeTask = require('../store/tasks');
      
  
               
-                  storeTask.delete(id,function(err, dltObj){
+                  storeTask.delete(id, function(dltObj){
                     
                         if(dltObj){
 

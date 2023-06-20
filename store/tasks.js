@@ -18,19 +18,22 @@ const Task = require('../models/tasks');
         
      }
 
+      function updateTask(id,cb){
+        //  Task.findByIdAndUpdate() 
+
+      } 
+
 
       function deleteTask(id,cb){
        
-         Task.deleteOne({ _id: id  }).then(( deletedTask)=>{
+         Task.findByIdAndDelete(id).then(( deletedTask)=>{
 
           cb(deletedTask);
           
 
 
          }).catch((err)=>{cb(err)});  
-            
-    
-           
+                       
 
      } 
   
