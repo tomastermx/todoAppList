@@ -1,9 +1,10 @@
 
+require('dotenv').config();
 
 const express = require('express');
 const app =   express();
-const bodyParser = require('body-parser')
-const PORT =  3000 ;
+const bodyParser = require('body-parser')  
+const PORT = process.env.PORT || 3000;
 const db = require('./models/db');
 
 const tasksRouter = require('./routes/tasks');
@@ -20,7 +21,7 @@ app.use('/tasks', tasksRouter);
 
 
 
-app.listen(PORT || 8080 ,()=>{ console.log('Servidor conectado');})
+app.listen(PORT ,()=>{ console.log('Servidor conectado');})
 
 
 

@@ -1,0 +1,43 @@
+
+services:
+  backend:
+    build: .
+    container_name: todoApp-app
+    ports:
+      - "${PORT}:3000"
+    
+    depends_on:
+
+      mongo:
+        condition: service_healthy 
+       
+    networks:
+      - todoAppNetwork
+  
+  mongo:
+    image: mongo:4.4
+    container_name: todoApp-mongo
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - 27017:27017
+    volumes:
+     - ./mongo_data:/data/db
+
+
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+   
+    networks:
+      - todoAppNetwork
+
+
+networks:
+  todoAppNetwork:
+    driver: bridge

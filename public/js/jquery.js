@@ -29,8 +29,7 @@ $(function(){
 
       })
 
-      /*  DELETE TASK  */
-
+  
             
 
                   $("#datatable").on('click','button', function(e){                  
@@ -56,8 +55,7 @@ $(function(){
             
 
 
-    /* Create new Task *////////////////////////////////////
-          
+    
        
   
      

@@ -11,7 +11,8 @@ router.post('/new', validatorHandler(createTask,'body') , (req,res,next)=>{
      
 
  controller.addNewTask( req.body.name, req.body.priority, req.body.done )
- 
+
+
   .then((obj)=>{
     
     console.log(obj);
